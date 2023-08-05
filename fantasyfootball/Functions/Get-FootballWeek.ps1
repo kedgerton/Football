@@ -218,6 +218,6 @@ function Get-FootballWeek
         }
     }
     End {
-        $Week_Array | Export-Csv -Path C:\Users\Kenne\Downloads\TEST\CBSFootball$($Position)_Week.csv -Append
+        $Week_Array | Export-Csv -Path /home/kedgerton/GitHub/Football/2023-2024/CBSFootball$($Position)_Week.csv -Append
     }
 }

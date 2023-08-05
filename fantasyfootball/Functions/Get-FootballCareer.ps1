@@ -245,6 +245,6 @@ function Get-FootballCareer
         }
     }
     End {
-        $Career_Array | Export-Csv -Path C:\Users\Kenne\Downloads\TEST\CBSFootball$($Position)_Career.csv -Append
+        $Career_Array | Export-Csv -Path /home/kedgerton/GitHub/Football/2023-2024/CBSFootball$($Position)_Career.csv -Append
     }
 }

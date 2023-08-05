@@ -46,7 +46,6 @@ function Get-FootballBio
             $Object.'Weight' =  Invoke-Command {
                 $Regex = '(?<=\,)[0-9]{3}.+'
                 [regex]::Match($($HtmlObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[0].innertext -replace '\s',"") , $regex).value
-            
             }
             $Object.'NumTeamExp' =  Invoke-Command {
                 $Regex = '[0-9]{1,2}'
@@ -68,7 +67,7 @@ function Get-FootballBio
             }
     }
     End {
-        $Object | Export-Csv -Path C:\Users\Kenne\Downloads\TEST\CBSFootball$($Position)_Player.csv -Append
+        $Object | Export-Csv -Path /home/kedgerton/GitHub/Football/2023-2024/CBSFootball$($Position)_Player.csv -Append
     }
 }
  
