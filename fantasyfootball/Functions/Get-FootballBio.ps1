@@ -67,7 +67,7 @@ function Get-FootballBio
             }
     }
     End {
-        $Object | Export-Csv -Path /home/kedgerton/GitHub/Football/2023-2024/CBSFootball$($Position)_Player.csv -Append
+        $Object | Export-Csv -Path /home/kedgerton/GitHub/Football/2023_2024/CBSFootball$($Position)_Player.csv -Append
     }
 }
  

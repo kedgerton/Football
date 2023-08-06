@@ -45,7 +45,7 @@ function Get-FootballPlayerData
 
             }
             'Week' {
-                $FantasyWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $("https://www.cbssports.com/nfl/players/$($PlayerID)/$($PlayersDashHash[$PlayersName])/game-log/2021/")).content
+                $FantasyWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $("https://www.cbssports.com/nfl/players/$($PlayerID)/$($PlayersDashHash[$PlayersName])/game-log/2022/")).content
                 Get-FootballWeek -Html $FantasyWebRequest
             }
         }

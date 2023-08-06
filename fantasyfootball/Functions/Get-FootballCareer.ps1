@@ -201,7 +201,7 @@ function Get-FootballCareer
             'TE' {
                 for ( $i = 0 ; $i -lt $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes.count ) ; $i ++  ) {
                     $YearCheck = $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes[$i].childnodes[0].innertext -replace '\s',"") 
-                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2022' ) {
+                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2023' ) {
                         $Object = New-Object TE_Career
                         $Object.'Player Name' =  Invoke-Command {
                             $PlayersName
@@ -245,6 +245,6 @@ function Get-FootballCareer
         }
     }
     End {
-        $Career_Array | Export-Csv -Path /home/kedgerton/GitHub/Football/2023-2024/CBSFootball$($Position)_Career.csv -Append
+        $Career_Array | Export-Csv -Path /home/kedgerton/GitHub/Football/2023_2024/CBSFootball$($Position)_Career.csv -Append
     }
 }
