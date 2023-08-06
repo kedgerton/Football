@@ -16,7 +16,7 @@ function Get-FootballPlayers
     )
 
     Begin {
-        $rootURI = 'https://www.cbssports.com/fantasy/football/rankings/standard'
+        $rootURI = 'https://www.cbssports.com/fantasy/football/rankings/ppr'
         [hashtable]$PlayersFantasyHash = @{}
         [hashtable]$PlayersInfoHash    = @{}
         [hashtable]$PlayersIDHash      = @{}
