@@ -11,4 +11,5 @@ function Write-FootballModule (){
     foreach ( $File in Get-ChildItem -Path $("$($GithubPath)/Functions") ) {
         Copy-Item -Path "$($GithubPath)/Functions/$($File.Name)" -Destination "$($ModulePath)/FantasyFootball/Functions/$($File.Name)"
     }
+    Set-Location -Path "/home/kedgerton/GitHub/Football"
 }

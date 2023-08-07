@@ -69,7 +69,7 @@ function Get-FootballCareer
             'QB' {
                 for ( $i = 0 ; $i -lt $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes.count ) ; $i ++  ) {
                     $YearCheck = $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes[$i].childnodes[0].innertext -replace '\s',"") 
-                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2022' ) {
+                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2023' ) {
                         $Object = New-Object QB_Career
                         $Object.'Player Name' =  Invoke-Command {
                             $PlayersName
@@ -113,7 +113,7 @@ function Get-FootballCareer
             'RB' {
                 for ( $i = 0 ; $i -lt $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes.count ) ; $i ++  ) {
                     $YearCheck = $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes[$i].childnodes[0].innertext -replace '\s',"") 
-                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2022' ) {
+                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2023' ) {
                         $Object = New-Object RB_Career
                         $Object.'Player Name' =  Invoke-Command {
                             $PlayersName
@@ -157,7 +157,7 @@ function Get-FootballCareer
             'WR' {
                 for ( $i = 0 ; $i -lt $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes.count ) ; $i ++  ) {
                     $YearCheck = $($HtmlObject.SelectNodes('//table')[0].childnodes[2].childnodes[$i].childnodes[0].innertext -replace '\s',"") 
-                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2022' ) {
+                    if ( $YearCheck -match '[0-9]{4}' -and $YearCheck -ne '2023' ) {
                         $Object = New-Object WR_Career
                         $Object.'Player Name' =  Invoke-Command {
                             $PlayersName
