@@ -37,7 +37,7 @@ function Get-FootballPlayerData
         switch ( $Data ) {
             'Player' {
                 $FantasyWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($PlayersInfoHash[$PlayersName])).content
-                Get-FootballBio -Html $FantasyWebRequest
+                Get-FootballBio -Html $FantasyWebRequest -PlayerID $PlayerID
             }
             'Career' {
                 $FantasyWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $("https://www.cbssports.com/nfl/players/$($PlayerID)/$($PlayersDashHash[$PlayersName])/career-stats/")).content

@@ -12,7 +12,8 @@ function Get-FootballBio
 {
     Param
     (
-        [string]$Html
+        [string]$Html,
+        [string]$PlayerID
     )
     Begin {
         class NFL_Player {
@@ -29,7 +30,9 @@ function Get-FootballBio
             [string]$IMG
             [bool]$Drafted
         }
-        $HtmlObject = $Html | ConvertFrom-Html
+        $HtmlObject     = $Html | ConvertFrom-Html
+        $FantasyTab     = "https://www.cbssports.com/nfl/players/$($PlayerID)/$($PlayersName)/fantasy/" -replace "\s",'-'
+        $FantasyTabHtml = $(Invoke-WebRequest -UseBasicParsing -Uri $FantasyTab).content | ConvertFrom-Html
     }
     Process {
             $Object = New-Object NFL_Player
@@ -38,6 +41,9 @@ function Get-FootballBio
             }
             $Object.'Position' =  Invoke-Command {
                 $Position
+            }
+            $object.'Rank' = Invoke-Command {
+                $FantasyTabHtml.SelectNOdes('//section')[2].childnodes[5].childnodes[5].childnodes[1].innertext -replace "\s" -replace "#"
             }
             $Object.'Height' =  Invoke-Command {
                 $Regex = '[0-9]{1}\-[0-9]{1,2}'
