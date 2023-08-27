@@ -26,7 +26,7 @@ function Get-FootballBio
             [string]$Weight
             [string]$Age
             [string]$College
-            [string]$Bye
+            #[string]$Bye
             [string]$IMG
             [bool]$Drafted
         }
@@ -44,11 +44,11 @@ function Get-FootballBio
             }
             try{
                 $object.'Rank' = Invoke-Command {
-                    $FantasyTabHtml.SelectNOdes('//section')[2].childnodes[5].childnodes[5].childnodes[1].innertext -replace "\s" -replace "#"
+                    $FantasyTabHtml.SelectNodes('//section')[2].childnodes[5].childnodes[5].childnodes[1].innertext -replace "\s" -replace "#"
                 }
             }
             catch{
-                $object.'Rank' = 'NA'
+                $object.'Rank' = 0
             }
             $Object.'Height' =  Invoke-Command {
                 $Regex = '[0-9]{1}\-[0-9]{1,2}'
