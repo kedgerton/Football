@@ -42,12 +42,12 @@ function Get-Teams() {
         $Object.Wins                = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "[\d]{1,2}").value
         $Object.Losses              = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=-)[\d]{1,2}(?=-)").value
         $Object.Ties                = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=-)[\d]{1}(?=\s)").value
-        $Object.'Conference'        = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "[AN][F][C]").value
+        $Object.Conference          = [regex]::Matches(($request.SelectNodes('//aside'))[1].innerText, "([AN][F][C])|(North)|(South)|(East)|(West)").value -join ' '
         $Object.'Conference Wins'   = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=Overall\s\W\s).").value
         $Object.'Conference Losses' = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=Overall\s\W\s.\-).").value
         $Object.'Conference Ties'   = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=Overall\s\W\s.\-.\-).").value
         $Object.'Conference Rank'   = [regex]::Match(($request.SelectNodes('//aside'))[1].innerText, "(?<=Overall\s\W\s.\-.\-.\s[AN]FC\s.\s)[0-9][a-z]{2}").value
-        $Object.'Bye'               = $ByeNumber
+        $Object.'Bye'               = "Bye $($ByeNumber)"
 
         $Team_Array.Add($Object) | Out-NUll
     }

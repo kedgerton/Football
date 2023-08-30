@@ -58,15 +58,19 @@ function Get-FootballBio
                 $Regex = '(?<=\,)[0-9]{3}.+'
                 [regex]::Match($($HtmlObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[0].innertext -replace '\s',"") , $regex).value
             }
-            $Object.'NumTeamExp' =  Invoke-Command {
-                $Regex = '[0-9]{1,2}'
-                [regex]::Match($($HtmlObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[4].innertext -replace '\s',"") , $regex).value
-            }
             $Object.'Team Name' =  Invoke-Command {
                 $HtmlObject.selectnodes('//aside')[0].ChildNodes[1].childnodes[5].childnodes[3].childnodes[3].childnodes[1].InnerText.TrimEnd()
             }
+            $Object.'NumTeamExp' =  Invoke-Command {
+                $Regex  = '[0-9]{1,2}'
+                $Regex2 = '\#[0-9]{1,}'
+                $exp    = [regex]::Match($($HtmlObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[4].innertext -replace '\s',"") , $regex).value
+                $num    = [regex]::Match($($HtmlObject.SelectNodes('//aside')[1].childnodes[2].innertext), $Regex2).value
+                return "$($num) $($Position) / $($Object.'Team Name') / EXP: $($exp)YRS"
+            }
             $Object.'Age' =  Invoke-Command {
-                $Regex = '[0-9]{1,2}'
+                $Regex  = '[0-9]{1,2}'
+                
                 [regex]::Match($($HtmlObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[2].innertext -replace '\s',"") , $regex).value
             }
             $Object.'College' =  Invoke-Command {
