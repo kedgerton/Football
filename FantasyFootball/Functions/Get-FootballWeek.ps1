@@ -152,25 +152,25 @@ function Get-FootballWeek
                     $Object.'Week' =  Invoke-Command {
                         $($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes.count ) - $i
                     }
-                    $Object.'TAR' = Invoke-Command {
-                        $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
-                    }
+                    # $Object.'TAR' = Invoke-Command {
+                    #     $Regex = '[0-9]{1,}'
+                    #     [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
+                    # }
                     $Object.'RECPT' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
+                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[4].innertext -replace '\s',"") , $regex).value
                     }
                     $Object.'REYD' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[5].innertext -replace '\s',"") , $regex).value
+                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[6].innertext -replace '\s',"") , $regex).value
                     }
                     $Object.'RETD' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[7].innertext -replace '\s',"") , $regex).value
+                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[8].innertext -replace '\s',"") , $regex).value
                     }
                     $Object.'REAVG' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[4].innertext -replace '\s',"") , $regex).value
+                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[5].innertext -replace '\s',"") , $regex).value
                     }
                     $Object.'FPTS' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
@@ -188,13 +188,13 @@ function Get-FootballWeek
                     $Object.'Week' =  Invoke-Command {
                         $($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes.count ) - $i
                     }
-                    $Object.'TAR' = Invoke-Command {
-                        $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
-                    }
+                    # $Object.'TAR' = Invoke-Command {
+                    #     $Regex = '[0-9]{1,}'
+                    #     [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
+                    # }
                     $Object.'RECPT' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
+                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[4].innertext -replace '\s',"") , $regex).value
                     }
                     $Object.'REYD' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
@@ -204,10 +204,10 @@ function Get-FootballWeek
                         $Regex = '[0-9]{1,}'
                         [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[7].innertext -replace '\s',"") , $regex).value
                     }
-                    $Object.'REAVG' = Invoke-Command {
-                        $Regex = '[0-9]{1,}'
-                        [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[4].innertext -replace '\s',"") , $regex).value
-                    }
+                    # $Object.'REAVG' = Invoke-Command {
+                    #     $Regex = '[0-9]{1,}'
+                    #     [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[4].innertext -replace '\s',"") , $regex).value
+                    # }
                     $Object.'FPTS' = Invoke-Command {
                         $Regex = '[0-9]{1,}'
                         [regex]::Match($($HtmlObject.SelectNodes('//table')[-1].childnodes[2].childnodes[$i].childnodes[3].innertext -replace '\s',"") , $regex).value
