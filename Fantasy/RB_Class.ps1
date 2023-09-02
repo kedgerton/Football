@@ -1,4 +1,5 @@
 class playercareer_rb : init {
+    hidden [string]$File = '2023_2024'
     [string]${Player Name}
     [string]$Season
     [int]$RUATT
@@ -11,7 +12,9 @@ class playercareer_rb : init {
 
     [array] runrequest(){
         $CareerWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'CareerURL')).content
+        Write-Host "Collecting Player $($this.'Player Name') Career Data" -NoNewline
         return $this.careerdata($CareerWebRequest)
+        Write-Host " [ DONE ]" -ForegroundColor Green
     }
     [array] careerdata($career) {
         $CareerObject = $($career | ConvertFrom-Html)
@@ -60,9 +63,14 @@ class playercareer_rb : init {
         }
         return $CareerArray
     }
+
+    [void] export($input) {
+        $input | Export-Csv -Path "/home/kedgerton/GitHub/Football/$($this.File)/CBSFootball$($this.Position)_Career.csv" -Append
+    }
 }
 
 class playerweek_rb : init {
+    hidden [string]$File = '2023_2024'
     [string]${Player Name}
     [string]$Week
     [int]$RUATT
@@ -75,7 +83,9 @@ class playerweek_rb : init {
 
     [array] runrequest(){
         $WeekWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'GameLogURL')).content
+        Write-Host "Collecting Player $($this.'Player Name') Week Data" -NoNewline
         return $this.careerdata($WeekWebRequest)
+        Write-Host " [ DONE ]" -ForegroundColor Green
     }
     [array] careerdata($week) {
         $WeekObject = $($week | ConvertFrom-Html)
@@ -119,5 +129,9 @@ class playerweek_rb : init {
             $WeekArray.Add($($script:Object | Select-Object -ExcludeProperty CareerURL,FantasyURL,'PlayerHomeURL','GameLogURL') )
         }
         return $WeekArray
+    }
+
+    [void] export($input) {
+        $input | Export-Csv -Path "/home/kedgerton/GitHub/Football/$($this.File)/CBSFootball$($this.Position)_Week.csv" -Append
     }
 }

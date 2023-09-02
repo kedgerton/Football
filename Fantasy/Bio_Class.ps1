@@ -1,4 +1,5 @@
 class playerbio : init {
+    hidden [string]$File = '2023_2024'
     [string]${Player Name}
     [string]$Position
     [string]$Rank
@@ -14,7 +15,9 @@ class playerbio : init {
     [void] runrequest(){
         $PlayerHomeWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'PlayerHomeURL')).content
         $FantasyWebRequest    = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'FantasyURL')).content
+        Write-Host "Collecting Player $($this.'Player Name') Bio Data" -NoNewline
         $this.biodata($PlayerHomeWebRequest,$FantasyWebRequest)
+        Write-Host " [ DONE ]" -ForegroundColor Green
     }
 
     [void] biodata($homeweb,$fantasyweb){
@@ -59,5 +62,6 @@ class playerbio : init {
         $this.'IMG' = Invoke-Command {
             "https://sportshub.cbsistatic.com/i/sports/player/headshot/$($PlayerID).png?width=160"
         }
+        $this | Select-Object -ExcludeProperty CareerURL,FantasyURL,'PlayerHomeURL','GameLogURL' | Export-Csv -Path "/home/kedgerton/GitHub/Football/$($this.File)/CBSFootball$($this.Position)_Player.csv" -Append
     }
 }
