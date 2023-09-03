@@ -67,4 +67,5 @@ function Get-AllPlayers() {
             }
         }
     }
+    Get-Teams
 }
