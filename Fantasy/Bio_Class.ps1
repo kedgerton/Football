@@ -60,7 +60,7 @@ class playerbio : init {
             [regex]::Match($($HomeObject.SelectNodes('//table')[1].ChildNodes[1].ChildNodes.childnodes[3].innertext) , $regex).value.TrimEnd()
         }
         $this.'IMG' = Invoke-Command {
-            "https://sportshub.cbsistatic.com/i/sports/player/headshot/$($PlayerID).png?width=160"
+            "https://sportshub.cbsistatic.com/i/sports/player/headshot/$($this.PlayerID).png?width=160"
         }
         $this | Select-Object -ExcludeProperty CareerURL,FantasyURL,'PlayerHomeURL','GameLogURL' | Export-Csv -Path "/home/kedgerton/GitHub/Football/$($this.File)/CBSFootball$($this.Position)_Player.csv" -Append
     }

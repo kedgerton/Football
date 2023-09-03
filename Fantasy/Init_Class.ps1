@@ -3,6 +3,7 @@ class init {
     hidden [string]$URIPLAYER = 'https://www.cbssports.com/nfl/players'
     hidden [string]$LASTYEAR  = '2022'
     hidden [string]$THISYEAR  = '2023'
+    hidden [string]$PlayerID
     hidden [array]$Positions  = @('QB','RB','WR','TE')
     hidden [string]${Player Name}
     hidden [string]$Position
@@ -22,11 +23,11 @@ class init {
             $Webrequest = Invoke-WebRequest @request
             $PlayersURL = $Webrequest.Links.href | Where-Object { $_ -like "/nfl/players/*/$($name)/fantasy/" } | Sort-Object -Unique
             if ( $PlayersURL ) {
-                $PlayerID           = $([regex]::Match($PlayersURL ,"[0-9]{1,}")).value
-                $this.'PlayerHomeURL' = "$($this.URIPLAYER)/$($PlayerID)/$($name)"
-                $this.'FantasyURL'     = "$($this.URIPLAYER)/$($PlayerID)/$($name)/fantasy"
-                $this.'GameLogURL'    = "$($this.URIPLAYER)/$($PlayerID)/$($name)/game-log/$($this.LASTYEAR)"
-                $this.'CareerURL'      = "$($this.URIPLAYER)/$($PlayerID)/$($name)/career-stats"
+                $this.PlayerID           = $([regex]::Match($PlayersURL ,"[0-9]{1,}")).value
+                $this.'PlayerHomeURL' = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)"
+                $this.'FantasyURL'     = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/fantasy"
+                $this.'GameLogURL'    = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/game-log/$($this.LASTYEAR)"
+                $this.'CareerURL'      = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/career-stats"
                 $this.Position      = $($_Position) 
             }
         }
