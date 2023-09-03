@@ -15,7 +15,6 @@ class playercareer_wr : init {
         $CareerWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'CareerURL')).content
         Write-Host "Collecting Player $($this.'Player Name') Career Data" -NoNewline
         return $this.careerdata($CareerWebRequest)
-        Write-Host " [ DONE ]" -ForegroundColor Green
     }
 
     [array] careerdata($career) {
@@ -63,6 +62,7 @@ class playercareer_wr : init {
                 $CareerArray.Add($($script:Object | Select-Object -ExcludeProperty CareerURL,FantasyURL,'PlayerHomeURL','GameLogURL') )
             }
         }
+        Write-Host " [ DONE ]" -ForegroundColor Green
         return $CareerArray
     }
 
@@ -86,7 +86,6 @@ class playerweek_wr : init {
         $WeekWebRequest = $(Invoke-WebRequest -UseBasicParsing -Uri $($this.'GameLogURL')).content
         Write-Host "Collecting Player $($this.'Player Name') Week Data" -NoNewline
         return $this.careerdata($WeekWebRequest)
-        Write-Host " [ DONE ]" -ForegroundColor Green
     }
     [array] careerdata($week) {
         $WeekObject = $($week | ConvertFrom-Html)
@@ -121,6 +120,7 @@ class playerweek_wr : init {
             }
             $WeekArray.Add($($script:Object | Select-Object -ExcludeProperty CareerURL,FantasyURL,'PlayerHomeURL','GameLogURL') )
         }
+        Write-Host " [ DONE ]" -ForegroundColor Green
         return $WeekArray
     }
     [void] export($input) {
