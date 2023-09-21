@@ -1,9 +1,9 @@
 function Get-AllPlayers() {
     [string]$Directory = '2023_2024'
-    $TextInfo   = (Get-Culture).TextInfo
-    $PlayerDict = [hashtable]::new()
-    $Positions  = @('QB','RB','WR','TE')
-    $rootURI    = 'https://www.cbssports.com/fantasy/football/rankings/ppr'
+    $TextInfo          = (Get-Culture).TextInfo
+    $PlayerDict        = [hashtable]::new()
+    $Positions         = @('QB','RB','WR','TE')
+    $rootURI           = 'https://www.cbssports.com/fantasy/football/rankings/ppr'
     Remove-Item -Path "/home/kedgerton/GitHub/Football/$($Directory)/*" -Recurse
     foreach ( $_Position in $Positions ) {
         $request = @{

@@ -23,12 +23,12 @@ class init {
             $Webrequest = Invoke-WebRequest @request
             $PlayersURL = $Webrequest.Links.href | Where-Object { $_ -like "/nfl/players/*/$($name)/fantasy/" } | Sort-Object -Unique
             if ( $PlayersURL ) {
-                $this.PlayerID           = $([regex]::Match($PlayersURL ,"[0-9]{1,}")).value
+                $this.PlayerID        = $([regex]::Match($PlayersURL ,"[0-9]{1,}")).value
                 $this.'PlayerHomeURL' = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)"
-                $this.'FantasyURL'     = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/fantasy"
+                $this.'FantasyURL'    = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/fantasy"
                 $this.'GameLogURL'    = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/game-log/$($this.LASTYEAR)"
-                $this.'CareerURL'      = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/career-stats"
-                $this.Position      = $($_Position) 
+                $this.'CareerURL'     = "$($this.URIPLAYER)/$($this.PlayerID)/$($name)/career-stats"
+                $this.Position        = $($_Position) 
             }
         }
     }
